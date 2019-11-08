@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Customer;
+use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,10 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
-
-
-
-
 class RegistrationController extends AbstractController
 {
     /**
@@ -23,11 +19,17 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator): Response
     {
-        $user = new Customer();
+        if($this->isGranted("IS_AUTHENTICATED_FULLY"))
+        {
+            return $this->redirectToRoute("main");
+        }
+
+        $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setRoles(['ROLE_USER']);
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -46,7 +48,7 @@ class RegistrationController extends AbstractController
                 $user,
                 $request,
                 $authenticator,
-                'main' // firewallname in security.yaml
+                'main' // firewall name in security.yaml
             );
         }
 

@@ -1304,72 +1304,184 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="327" parent="4" name="customer">
+    <table id="327" parent="4" name="answer">
       <Collation>utf8mb4_unicode_ci</Collation>
     </table>
     <table id="328" parent="4" name="migration_versions">
       <Collation>utf8mb4_unicode_ci</Collation>
     </table>
-    <column id="329" parent="327" name="id">
+    <table id="329" parent="4" name="question">
+      <Collation>utf8mb4_unicode_ci</Collation>
+    </table>
+    <table id="330" parent="4" name="user">
+      <Collation>utf8mb4_unicode_ci</Collation>
+    </table>
+    <column id="331" parent="327" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="330" parent="327" name="email">
+    <column id="332" parent="327" name="user_id">
       <Position>2</Position>
-      <DataType>varchar(180)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="331" parent="327" name="roles">
+    <column id="333" parent="327" name="question_id">
       <Position>3</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="334" parent="327" name="body">
+      <Position>4</Position>
       <DataType>longtext|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
-      <Collation>utf8mb4_bin</Collation>
     </column>
-    <column id="332" parent="327" name="password">
-      <Position>4</Position>
-      <DataType>varchar(255)|0s</DataType>
+    <column id="335" parent="327" name="created">
+      <Position>5</Position>
+      <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="333" parent="327" name="UNIQ_81398E09E7927C74">
-      <ColNames>email</ColNames>
-      <Unique>1</Unique>
+    <index id="336" parent="327" name="IDX_DADD4A25A76ED395">
+      <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="334" parent="327" name="PRIMARY">
+    <index id="337" parent="327" name="IDX_DADD4A251E27F6BF">
+      <ColNames>question_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="338" parent="327" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="335" parent="327" name="UNIQ_81398E09E7927C74">
-      <ColNames>email</ColNames>
-      <UnderlyingIndexName>UNIQ_81398E09E7927C74</UnderlyingIndexName>
-    </key>
-    <check id="336" parent="327" name="roles">
-      <Predicate>json_valid(`roles`)</Predicate>
-    </check>
-    <column id="337" parent="328" name="version">
+    <foreign-key id="339" parent="327" name="FK_DADD4A25A76ED395">
+      <ColNames>user_id</ColNames>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="340" parent="327" name="FK_DADD4A251E27F6BF">
+      <ColNames>question_id</ColNames>
+      <RefTableName>question</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="341" parent="328" name="version">
       <Position>1</Position>
       <DataType>varchar(14)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="338" parent="328" name="executed_at">
+    <column id="342" parent="328" name="executed_at">
       <Position>2</Position>
       <Comment>(DC2Type:datetime_immutable)</Comment>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="339" parent="328" name="PRIMARY">
+    <key id="343" parent="328" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>version</ColNames>
       <Primary>1</Primary>
     </key>
+    <column id="344" parent="329" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="345" parent="329" name="user_id">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="346" parent="329" name="question">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="347" parent="329" name="body">
+      <Position>4</Position>
+      <DataType>longtext|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="348" parent="329" name="views">
+      <Position>5</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="349" parent="329" name="created">
+      <Position>6</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>current_timestamp()</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="350" parent="329" name="IDX_B6F7494EA76ED395">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="351" parent="329" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="352" parent="329" name="FK_B6F7494EA76ED395">
+      <ColNames>user_id</ColNames>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="353" parent="330" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="354" parent="330" name="email">
+      <Position>2</Position>
+      <DataType>varchar(180)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="355" parent="330" name="roles">
+      <Position>3</Position>
+      <DataType>longtext|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_bin</Collation>
+    </column>
+    <column id="356" parent="330" name="password">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="357" parent="330" name="UNIQ_8D93D649E7927C74">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="358" parent="330" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="359" parent="330" name="UNIQ_8D93D649E7927C74">
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>UNIQ_8D93D649E7927C74</UnderlyingIndexName>
+    </key>
+    <check id="360" parent="330" name="roles">
+      <Predicate>json_valid(`roles`)</Predicate>
+    </check>
   </database-model>
 </dataSource>
