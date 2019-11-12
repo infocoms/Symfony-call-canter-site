@@ -13,15 +13,15 @@ class MainController extends AbstractController
      * @Route("/", name="main")
      * @param QuestionRepository $questionRepository
      * @return \Symfony\Component\HttpFoundation\Response
-     * @IsGranted("IS_AUTHENTICATED_FULLY")
+     * @IsGranted("IS_AUTHENTICATED_ANONYMOUSLY")
      */
     public function index(QuestionRepository $questionRepository)
     {
-
         $questions = $questionRepository->findBy([], ['created' => 'DESC']);
 
         return $this->render('main/index.html.twig', [
             'questions' => $questions,
+
         ]);
     }
 }

@@ -16,9 +16,24 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        if($this->isGranted('IS_AUTHENTICATED_FULLY'))
+        if($this->isGranted('ROLE_MANAGER'))
+        {
+            return $this->redirectToRoute('user_index');
+        }
+
+        if($this->isGranted('ROLE_CUSTOMER'))
         {
             return $this->redirectToRoute('main');
+        }
+
+        if($this->isGranted('ROLE_FIRSTLINE'))
+        {
+            return $this->redirectToRoute('app_question');
+        }
+
+        if($this->isGranted('ROLE_SECONDLINE'))
+        {
+            return $this->redirectToRoute('user_index');
         }
 
         // get the login error if there is one
