@@ -20,10 +20,6 @@ class SecurityController extends AbstractController
         {
             return $this->redirectToRoute("main");
         }
-        elseif($this->isGranted("ROLE_SECOND"))
-        {
-            return $this->redirectToRoute("secondagent");
-        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
