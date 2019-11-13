@@ -31,14 +31,14 @@
                         <p class="card-text">{{ answer.body }}</p>
                     </div>
                     <div class="card-footer text-muted small">
-                        {{ answer.user.email }} - {{ answer.created|date("m/d/Y h:i a") }}
+                        By Agent : {{ answer.user.email }} - {{ answer.created|date("m/d/Y h:i a") }}
                     </div>
                 </div>
                 {% endfor %}
             </div>
         </div>
     {% endif %}
-
+    {% if is_granted('ROLE_AGENT') %}
     {% if answerForm %}
         <hr>
         <div class="row">
@@ -46,6 +46,7 @@
                 {{ form(answerForm) }}
             </div>
         </div>
+    {% endif %}
     {% endif %}
 
 {% endblock %}
