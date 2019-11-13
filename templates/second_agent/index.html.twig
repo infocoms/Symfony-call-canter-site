@@ -3,47 +3,7 @@
 {% block title %}Tomato call center{% endblock %}
 
 {% block body %}
-    {% if is_granted('ROLE_USER') %}
-        {{ 'welcome customer'}}
-        <div class="text-center"><h1>Your question's</h1></div>
-        <div class="row">
-            <div class="col-10 offset-1">
-                {% for question in questions %}
-                    <div class="card mb-3">
-                        <div class="card-body bg-light">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="col-3 text-center">
-                                            <span class="badge badge-info">{{'STATUS'}}</span>
-                                            <br>
-                                            <small>status</small>
-                                        </div>
-                                        <div class="col-3 text-center">
-                                            {{ question.answers|length }}
-                                            <br>
-                                            <small>answers</small>
-                                        </div>
-                                        <div class="col-3 text-center">
-                                            <a class="btn btn-success btn-small" href="{{ path('app_question', { 'id': question.id }) }}">Respond</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <h4 class="card-title">{{ question.question }}</h4>
-                                    <p class="card-text text-muted small">asked by {{ question.user.email }}  {{ question.created|date("m/d/Y h:i a") }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% else %}
-                    <div class="text-center alert alert-primary">No questions posted!</div>
-                {% endfor %}
-            </div>
-        </div>
-
-
-    {%elseif is_granted('ROLE_ADMIN')%}
+    {%if is_granted('ROLE_SECOND')%}
         {{ 'welcome admin'}}
         <div class="text-center"><h1>Tickets</h1></div>
         <div class="row">
