@@ -4,11 +4,12 @@
 
 {% block body %}
     {% if is_granted('ROLE_CUSTOMER') %}
-        {{ 'welcome customer'}}
-        <div class="text-center"><h1>Your Question's</h1></div>
+        <div class="text-center"><h3>{{ 'Welcome' }}<br><span class="badge badge-info">{{ app.user.email }}</span></h3>
+        </div>
+        <div class="text-center mt-5"><h1>Your Question's</h1></div>
         <div class="row">
             <div class="col-10 offset-1">
-                {% for question in questions %}
+                {% for question in questions if question.user.id == app.user.id %}
                     <div class="card mb-3">
                         <div class="card-body bg-light">
                             <div class="row">
@@ -20,13 +21,15 @@
                                             <small>answers</small>
                                         </div>
                                         <div class="col-4 text-center">
-                                            <a class="btn btn-success btn-small" href="{{ path('app_question', { 'id': question.id }) }}">View</a>
+                                            <a class="btn btn-success btn-small"
+                                               href="{{ path('app_question', { 'id': question.id }) }}">View</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <h4 class="card-title">{{ question.question }}</h4>
-                                    <p class="card-text text-muted small">asked by {{ question.user.email }}  {{ question.created|date("m/d/Y h:i a") }}</p>
+                                    <p class="card-text text-muted small">asked
+                                        by {{ question.user.email }}  {{ question.created|date("m/d/Y h:i a") }}</p>
                                 </div>
                             </div>
                         </div>
@@ -39,41 +42,53 @@
 
 
 
-    {%elseif is_granted('ROLE_AGENT')%}
-        <div class="text-center"><h3>{{ 'Welcome Agent '}}<br>( {{ app.user.id }} )</h3></div>
+    {% elseif is_granted('ROLE_AGENT') %}
+        <div class="text-center"><h3>{{ 'Welcome Agent ' }}<br><span
+                        class="badge badge-info">{{ app.user.email }}</span></h3></div>
         <div class="text-center mt-5"><h1>Tickets</h1></div>
         <div class="row">
             <div class="col-10 offset-1">
-                {% for question in questions%}
+                {% for question in questions if question.type == 'NORMAL'%}
                     <div class="card mb-3">
                         <div class="card-body bg-light">
                             <div class="row">
                                 <div class="col">
                                     <div class="row">
                                         <div class="col-3 text-center">
-                                            <span class="badge badge-info">{{'STATUS'}}</span>
+                                            <small>priority</small>
                                             <br>
-                                            <small>status</small>
+                                            {% if question.priority == 'LOW' %}
+                                                <span class="badge badge-success">{{ question.priority }}</span>
+                                            {% else %}
+                                                <span class="badge badge-danger">{{ question.priority }}</span>
+                                            {% endif %}
                                         </div>
                                         <div class="col-3 text-center">
-                                           {{ question.answers|length }}
+                                            <small>status</small>
+                                            <br>
+                                            <span class="badge badge-info">{{ question.status }}</span>
+                                        </div>
+                                        <div class="col-3 text-center">
+                                            {{ question.answers|length }}
                                             <br>
                                             <small>answers</small>
                                         </div>
                                         <div class="col-3 text-center">
-                                            <a class="btn btn-success btn-small" href="{{ path('app_question', { 'id': question.id }) }}">Respond</a>
+                                            <a class="btn btn-success btn-small"
+                                               href="{{ path('app_question', { 'id': question.id }) }}">Respond</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <h4 class="card-title">{{ question.question }}</h4>
-                                    <p class="card-text text-muted small">asked by {{ question.user.email }}  {{ question.created|date("m/d/Y h:i a") }}</p>
+                                    <p class="card-text text-muted small">asked
+                                        by {{ question.user.email }}  {{ question.created|date("m/d/Y h:i a") }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 {% else %}
-                    <div class="text-center alert alert-primary">No questions posted!</div>
+                    <div class="text-center alert alert-primary">No Tickets posted!</div>
                 {% endfor %}
             </div>
         </div>

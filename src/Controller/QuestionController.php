@@ -33,6 +33,9 @@ class QuestionController extends AbstractController
             {
                 $answer->setUser($this->getUser());
                 $answer->setQuestion($question);
+                $question->setStatus('IN PROGRESS');
+
+                $question->setType('NORMAL');
 
                 $entityManager->persist($answer);
                 $entityManager->flush();
@@ -46,7 +49,6 @@ class QuestionController extends AbstractController
         }
 
         $question->setViews($question->getViews() + 1);
-
         $entityManager->persist($question);
         $entityManager->flush();
 
@@ -70,6 +72,9 @@ class QuestionController extends AbstractController
         if($form->isSubmitted() && $form->isValid())
         {
             $question->setUser($this->getUser());
+            $question->setPriority('LOW');
+            $question->setType('NORMAL');
+            $question->setStatus('OPEN');
             $question->setCreated(new \DateTime());
 
             $entityManager = $this->getDoctrine()->getManager();

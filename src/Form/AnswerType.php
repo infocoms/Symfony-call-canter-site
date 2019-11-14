@@ -21,7 +21,7 @@ class AnswerType extends AbstractType
                         'message' => 'Your answer may not be blank.'
                     ])
                 ],
-                'label' => 'Your Answer'
+                'label' => 'Your Response'
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Send'
