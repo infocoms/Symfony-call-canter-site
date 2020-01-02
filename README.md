@@ -15,6 +15,7 @@ This is my first small project in Symfony 4.2.12.
 - Posting of tickets/questions
 - Chat like UI when answering and asking questions
 - Changing of priority
+- Has a status to see what is happening (open, in progress, closed)
 
 / - To be implemented -/
 - Admin dashboard to remove agents or customers
