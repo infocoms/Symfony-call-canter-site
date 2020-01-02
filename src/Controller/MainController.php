@@ -17,6 +17,12 @@ class MainController extends AbstractController
      */
     public function index(QuestionRepository $questionRepository)
     {
+        if($this->isGranted("ROLE_SECOND"))
+        {
+            return $this->redirectToRoute("secondagent");
+        }
+
+
         $questions = $questionRepository->findBy([], ['created' => 'DESC']);
 
         return $this->render('main/index.html.twig', [

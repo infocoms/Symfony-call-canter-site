@@ -1,64 +1,74 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADizDGA4sw/0OLMP/DizD/w4sw/8OLMP/DizD/w4swwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADizD/w4sw/8OLMP/DizD/w4sw/8OLMP/DizD/w4sw/8OLMP/DizD/wAAAAAAAAAAAAAAAAAAAAAAAAAADizD/w4sw/8OLMP/DizD/xEvxv8aONH/GjjR/xEvxv8OLMP/DizD/w4sw/8OLMP/AAAAAAAAAAAAAAAADizD/w4sw/8OLMP/IkHb/yJB2/8iQdv/IkHb/yJB2/8iQdv/IkHb/yJB2/8OLMP/DizD/w4sw/8AAAAADizDQg4sw/8RL8f/IkHb/yJB2/8iQdv/IkHb/yJB2/8iQdv/IkHb/yJB2/8iQdv/IkHb/xEvx/8OLMP/DizDPw4sw/8OLMP/IkHb/yJB2/8iQdv/IkHb/yJB2/8iQdv/IkHb/yJB2/8iQdv/IkHb/yJB2/8iQdv/DizD/w4sw/8OLMP/IkHb/yJB2/8iQdv/IkHb/yJB2/8iQdv/IkHb/yJB2/8iQdv/IkHb/yJB2/8iQdv/IkHb/yJB2/8OLMP/DizD/yJB2/8iQdv/IkHb/05n4v9OZ+L/Tmfi/05n4v9AWuD/IkHb/yJB2/8iQdv/IkHb/yJB2/8iQdv/DizD/w4sw/8iQdv/I0Lb/05n4v9OZ+L/Tmfi/05n4v9OZ+L/Tmfi/z9b4P8iQdv/IkHb/yJB2/8iQdv/IkHb/w4sw/8OLMP/IkHb/05n4v8xTd7/IkHb/yJB2/9NZ+L/Tmfi/05n4v8iQdv/IkHb/yJB2/8iQdv/IkHb/yJB2/8OLMP/DizDBCJB2/8wTd7/IkHb/y+pb/8PLsL/IkHb/yJB2/8iQdv/IkHb/yFA2v8gP9n/IkHb/yJB2/8hQNr/DizDFgAAAAAOLMP/N1Pe/0dh4f8iQdv/L6hw/yeMg/8OLMP/DizD/yWDif8vqHD/IG+W/yJB2/8iQdv/DizD/AAAAAAAAAAAAAAAAA4sw/8iQdv/IUDa/w8vwf9LvYj/L6lw/zGpcv9KvIf/ID7Y/yJB2/8iQdv/DizD/wAAAAAAAAAAAAAAAAAAAAAjl2H/I5dh/yieZ/8jl2H/S72I/y+ocP9LvYj/KaBp/yuiav8jl2H/I5dh/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJptk1COXYf0jmGL5I5dh4C6mbv8jl2ECAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALqZu/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+B8AAOAHAADAAwAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAACAAQAAwAMAAMAHAAD4PwAA/v8AAA=="
+          rel="icon" type="image/x-icon"/>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
 
 
-
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav mr-auto">
-                        {% if app.user %}
-                            <li class="nav-item mr-5">
-                                <a class="nav-link" href="{{ path('main') }}">Home</a>
-                            </li>
-                        {% else %}
-                            <li class="nav-item mr-5">
-                                <a class="nav-link" href="{{ path('main') }}">Home</a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </div>
-                <a class="navbar-brand m-auto" href="/">Tomato Call Center</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav ml-auto">
-                        {% if app.user %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_question_ask') }}">Ask a Question</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_logout') }}">Log Out</a>
-                            </li>
-                        {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_login') }}">Log In</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_register') }}">Sign Up</a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="container mt-4">
-            {% block body %}{% endblock %}
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                {% if app.user %}
+                    <li class="nav-item mr-5">
+                        <a class="nav-link" href="{{ path('main') }}">Home</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item mr-5">
+                        <a class="nav-link" href="{{ path('main') }}">Home</a>
+                    </li>
+                {% endif %}
+            </ul>
         </div>
+        <a class="navbar-brand m-auto" href="/">Tomato Call Center</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                {% if app.user %}
+                    {% if is_granted('ROLE_CUSTOMER') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_question_ask') }}">Ask a Question</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_logout') }}">Log Out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_login') }}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_register') }}">Sign Up</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
 
-        {% block javascripts %}{% endblock %}
+<div class="container mt-4">
+    {% block body %}{% endblock %}
+</div>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </body>
+{% block javascripts %}{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
 </html>

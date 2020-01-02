@@ -28,20 +28,20 @@
             <div class="col-6 m-auto">
                 {% for answer in question.answers %}
                     {% if answer.user.id == app.user.id %}
-                    <div class="card mb-3 float-right">
-                        <div class="card-body bg-success">
+                    <div class="card mb-3 ml-5 float-right border-0">
+                        <div class="card-body bg-success rounded-pill">
                             <p class="card-text text-light">{{ answer.body }}</p>
                         </div>
-                        <div class="card-footer small">
+                        <div class="card-footer small rounded-pill">
                             From : {{ answer.user.email }} - {{ answer.created|date("m/d/Y h:i a") }}
                         </div>
                         </div>
                     {% else %}
-                        <div class="card mb-3 float-left">
-                            <div class="card-body bg-primary">
+                        <div class="card mb-3 mr-5 float-left border-0">
+                            <div class="card-body bg-primary rounded-pill">
                                 <p class="card-text text-light">{{ answer.body }}</p>
                             </div>
-                            <div class="card-footer small">
+                            <div class="card-footer small rounded-pill">
                                 From : {{ answer.user.email }} - {{ answer.created|date("m/d/Y h:i a") }}
                             </div>
                         </div>
